@@ -2,13 +2,13 @@ import React from "react";
 
 const InputArea = (props) => {
   return (
-    <div className="col-md-2">
+    <div className="row">
       <label className="col-md-12">{props.label}</label>
       <input
         className="col-md-12 kjga-input-box"
-        type="number"
+        type={props.val_type}
         autoComplete="off"
-        value={props.amount}
+        value={props.val}
         onChange={props.change}
       />
     </div>

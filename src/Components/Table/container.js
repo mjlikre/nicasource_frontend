@@ -1,6 +1,8 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import PopUp from "../PopUp"
 export default function TableContainer(props) {
+  
   return (
     <>
       <h3>{props.data.cont}</h3>
@@ -26,7 +28,7 @@ export default function TableContainer(props) {
                     <th className="paymentTable">{item.cases.total}</th>
                     <th className="paymentTable">{item.cases.recovered}</th>
                     <th className="paymentTable">{item.deaths.total}</th>
-                    <th className="paymentTable"></th>
+                    <th className="paymentTable"><PopUp item = {item}/></th>
                   </tr>
                 );
               })

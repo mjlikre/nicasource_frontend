@@ -25,8 +25,8 @@ export const getSpecificStatistics = (data, done) => async (dispatch) => {
   
 };
 
-export const updateStatistics = (data, done) => {
-    axios.post(`https://mj-nicasource-test.herokuapp.com/api/statistics/${data.country}`, data,  {
+export const updateStatistics = (data, done) => async() =>{
+    await axios.post(`https://mj-nicasource-test.herokuapp.com/api/statistics/${data.country}`, data.data,  {
         headers: { authorization: localStorage.getItem("token") },
       });
   if (done) {

@@ -13,8 +13,10 @@ const Main = (props) => {
         if (!props.data){
             props.getStatistics()
         }
-        else{
-            console.log(props.data)
+        else if (showing.data){
+          if (showing.data !== props.data.data[showing.cont]){
+            setShowing({...showing, data: props.data.data[showing.cont]})
+          }
         }
         
     }, [props.data])
@@ -27,8 +29,7 @@ const Main = (props) => {
                 <Card.Body>
                   <Card.Title>{item}</Card.Title>
                   
-                  <Button onClick = {()=> {setShowing({...showing, cont: item, data: props.data.data[item]}) 
-                    console.log(showing)}}>
+                  <Button onClick = {()=> {setShowing({...showing, cont: item, data: props.data.data[item]})}}>
                       Show
                   </Button>
                 </Card.Body>
