@@ -82,7 +82,7 @@ const LoginBox = (props) => {
     )
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
       errorMessage: state.auth.errorMessage,
     };

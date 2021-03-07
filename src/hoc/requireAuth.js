@@ -13,7 +13,7 @@ export default ChildComponent => {
 
     shouldNavigateAway(){
       if(!this.props.auth && !localStorage.getItem("token")) {
-        this.props.history.push('/signin');
+        this.props.history.push('/login');
       }
     }
 

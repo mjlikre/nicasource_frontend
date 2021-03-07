@@ -11,9 +11,12 @@ export default function TableContainer(props) {
           <tr>
             <th className="paymentTable">Country</th>
             <th className="paymentTable">Population</th>
+            <th className="paymentTable">Recovered Cases</th>
+            <th className="paymentTable">Active Cases</th>
+            <th className="paymentTable">New Cases</th>
             <th className="paymentTable">Total Cases</th>
-            <th className="paymentTable">Total Recovered</th>
-            <th className="paymentTable">Deaths</th>
+            <th className="paymentTable">New Death</th>
+            <th className="paymentTable">Total Deaths</th>
             <th className="paymentTable"></th>
           </tr>
         </thead>
@@ -26,8 +29,12 @@ export default function TableContainer(props) {
                   <tr key={index}>
                     <th className="paymentTable">{item.country}</th>
                     <th className="paymentTable">{item.population}</th>
-                    <th className="paymentTable">{item.cases.total}</th>
                     <th className="paymentTable">{item.cases.recovered}</th>
+                    <th className="paymentTable">{item.cases.active}</th>
+                    <th className="paymentTable">{item.cases.new}</th>
+                    <th className="paymentTable">{item.cases.total}</th>
+          
+                    <th className="paymentTable">{item.deaths.new}</th>
                     <th className="paymentTable">{item.deaths.total}</th>
                     <th className="paymentTable"><PopUp item = {item}/></th>
                   </tr>
