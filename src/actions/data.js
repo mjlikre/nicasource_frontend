@@ -15,7 +15,9 @@ export const getStatistics = (data, done) => async (dispatch) => {
   }
 };
 export const getSpecificStatistics = (data, done) => async (dispatch) => {
-    const res = await axios.get(`https://mj-nicasource-test.herokuapp.com/api/statistics/${data}`,  {
+    let country = data[0].toUpperCase() + data.slice(1).toLowerCase()
+    console.log(country)
+    const res = await axios.get(`https://mj-nicasource-test.herokuapp.com/api/statistics/${country}`,  {
         headers: { authorization: localStorage.getItem("token") },
       });
     dispatch({ type: SPECIFIC_COVID_DATA, payload: res.data });
@@ -33,3 +35,12 @@ export const updateStatistics = (data, done) => async() =>{
     done()
   }
 };
+
+export const sync = (done) => async() => {
+  await axios.get(`https://mj-nicasource-test.herokuapp.com/api/sync`, {
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      if (done) {
+        done()
+      }
+}

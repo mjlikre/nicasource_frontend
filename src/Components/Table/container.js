@@ -21,6 +21,7 @@ export default function TableContainer(props) {
         <tbody>
           {props.data.data
             ? props.data.data.map((item, index) => {
+
                 return (
                   <tr key={index}>
                     <th className="paymentTable">{item.country}</th>

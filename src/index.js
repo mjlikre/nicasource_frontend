@@ -8,7 +8,7 @@ import "./styling/main.css"
 
 import SignUp from "./containers/Signup";
 import LogIn from "./containers/Login";
-import Main from "./containers/Main"
+import Main from "./containers/Main";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import reducers from "./reducers";
