@@ -8,28 +8,28 @@ const PopUp = (props) => {
   const [edit, setEdit] = useState({
     cases: {
       new: props.item.cases["new"],
-      active: props.item.cases["active"],
+      active: parseInt(props.item.cases["active"]),
       critical: props.item.cases["critical"],
-      recovered: props.item.cases["recovered"],
+      recovered: parseInt(props.item.cases["recovered"]),
       "1M_pop": props.item.cases["1M_pop"],
-      total: props.item.cases["total"],
+      total: parseInt(props.item.cases["total"]),
     },
     deaths: {
       new: props.item.deaths["new"],
       "1M_pop": props.item.deaths["1M_pop"],
-      total: props.item.deaths["total"],
+      total: parseInt(props.item.deaths["total"]),
     },
   });
   const [newCD, setNewCD] = useState({
     cases: 0,
     deaths: 0,
-    recovered: 0,
+    recovered: 0
   });
   const updateValues = (cases, deaths, recovered) => {
-    let UpdatedDeath = props.item.deaths.total + deaths
-    let UpdatedCases = props.item.cases.total + cases - recovered 
-    let UpdatedRecovered = props.item.cases.recovered + recovered
-    let UpdatedActive = props.item.cases.recovered + cases - recovered - deaths 
+    let UpdatedDeath = parseInt(props.item.deaths.total) + deaths
+    let UpdatedCases = parseInt(props.item.cases.total) + cases - recovered 
+    let UpdatedRecovered = parseInt(props.item.cases.recovered) + recovered
+    let UpdatedActive = parseInt(props.item.cases.recovered) + cases - recovered - deaths 
     setEdit({
       ...edit,
       cases: {
@@ -75,10 +75,10 @@ const PopUp = (props) => {
               val={newCD.cases}
               label="Add New Cases"
               change={(e) => {
-                updateValues(e.target.value, 0, 0)
+                updateValues(parseInt(e.target.value), 0, 0)
                 setNewCD({
                   ...newCD,
-                  cases: e.target.value
+                  cases: parseInt(e.target.value)
                 })
               }}
             />
@@ -87,10 +87,10 @@ const PopUp = (props) => {
               val={newCD.deaths}
               label="Add New Deaths"
               change={(e) => {
-                updateValues(0, e.target.value, 0)
+                updateValues(0, parseInt(e.target.value), 0)
                 setNewCD({
                   ...newCD,
-                  deaths: e.target.value
+                  deaths: parseInt(e.target.value)
                 })
               }}
             />
@@ -99,10 +99,10 @@ const PopUp = (props) => {
               val={newCD.recovered}
               label="Add New Recovered Cases"
               change={(e) => {
-                updateValues( 0, 0, e.target.value)
+                updateValues( 0, 0, parseInt(e.target.value))
                 setNewCD({
                   ...newCD,
-                  recovered: e.target.value
+                  recovered: parseInt(e.target.value)
                 })
               }}
             />
@@ -120,9 +120,16 @@ const PopUp = (props) => {
             <Button
               variant="primary"
               onClick={() => {
-                console.log(edit);
+                const difference = {
+                  cases: edit.cases.total - parseInt(props.item.cases.total),
+                  deaths: edit.deaths.total - parseInt(props.item.deaths.total),
+                  recovered: edit.cases.recovered - parseInt(props.item.cases.recovered),
+                  active: edit.cases.active - parseInt(props.item.cases.active),
+                  continent: props.item.continent
+                }
+                console.log(difference)
                 props.updateStatistics(
-                  { country: props.item.country, data: edit },
+                  { country: props.item.country, data: {update: edit, difference: difference} },
                   () => {
                     props.getStatistics();
 

@@ -24,6 +24,7 @@ export default function TableContainer(props) {
         <tbody>
           {props.data.data
             ? props.data.data.map((item, index) => {
+              if (item.country !== props.data.cont && item.country !== "All"){
 
                 return (
                   <tr key={index}>
@@ -39,7 +40,9 @@ export default function TableContainer(props) {
                     <th className="paymentTable"><PopUp item = {item}/></th>
                   </tr>
                 );
+              }
               })
+            
             : null}
         </tbody>
       </Table>

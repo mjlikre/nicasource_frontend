@@ -3,7 +3,7 @@ import requireAuth from "../hoc/requireAuth";
 import { Card, Button, Navbar, Nav } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getStatistics, getSpecificStatistics, sync } from "../actions/data";
-import { signout } from "../actions"
+import { signout } from "../actions";
 import TableContainer from "../Components/Table/container";
 import SearchBar from "../Components/SearchBar/SearchBar";
 const Main = (props) => {
@@ -31,28 +31,50 @@ const Main = (props) => {
       "Oceania",
       "Others",
     ];
-    return continents.map((item) => {
-      return (
-        <Card key = {item} style={{ width: "18rem", height: "12rem" }}>
-          <Card.Body>
-            <Card.Title>{item}</Card.Title>
+    if (props.data) {
+      return continents.map((item) => {
+        return (
+          <Card key={item} style={{ width: "18rem", height: "18rem" }}>
+            <Card.Body>
+              <Card.Title>{item}</Card.Title>
+              <Card.Text>
+                {props.data
+                  ? props.data.data[item].map((countries) => {
+                      if(countries.country === item){
+                        return (
+                          <>
+                          <div>Active Cases: {countries.cases.active}</div>
+                          <div>Recovered Cases: {countries.cases.recovered}</div>
 
-            <Button
-              onClick={() => {
-                setShowing({
-                  ...showing,
-                  cont: item,
-                  data: props.data.data[item],
-                });
-                setSearch(false);
-              }}
-            >
-              Show
-            </Button>
-          </Card.Body>
-        </Card>
-      );
-    });
+                          <div>Total Deaths: {countries.deaths.total}</div>
+                          <div>Total Cases: {countries.cases.total}</div>
+                          </>
+                        )
+                      };
+                    })
+                  : null}
+                
+              </Card.Text>
+
+              <Button
+                onClick={() => {
+                  setShowing({
+                    ...showing,
+                    cont: item,
+                    data: props.data.data[item],
+                  });
+                  setSearch(false);
+                }}
+              >
+                Show
+              </Button>
+            </Card.Body>
+          </Card>
+        );
+      });
+    } else {
+      return null;
+    }
   };
   return (
     <>
@@ -63,8 +85,26 @@ const Main = (props) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href = "#1"><Button onClick={()=> {props.sync(()=> {props.getStatistics()})}}>Sync</Button></Nav.Link>
-            <Nav.Link href = "#2"><Button onClick={()=> {props.signout()}}>Sign Out</Button></Nav.Link>
+            <Nav.Link href="#1">
+              <Button
+                onClick={() => {
+                  props.sync(() => {
+                    props.getStatistics();
+                  });
+                }}
+              >
+                Sync
+              </Button>
+            </Nav.Link>
+            <Nav.Link href="#2">
+              <Button
+                onClick={() => {
+                  props.signout();
+                }}
+              >
+                Sign Out
+              </Button>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -112,5 +152,10 @@ function mapStateToProps({ data }) {
 }
 
 export default requireAuth(
-  connect(mapStateToProps, { getStatistics, getSpecificStatistics, sync, signout })(Main)
+  connect(mapStateToProps, {
+    getStatistics,
+    getSpecificStatistics,
+    sync,
+    signout,
+  })(Main)
 );
