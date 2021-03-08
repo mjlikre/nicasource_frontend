@@ -2,6 +2,8 @@ import { AUTH_USER, AUTH_ERROR } from "./types";
 import axios from "axios";
 
 export const signup = (data, done) => async (dispatch) => {
+  //signup. takes in 2 parameters, data (the data to sent to the api) and done(callback function). data is an object that has two keys, 
+  // email and password
   try {
     const res = await axios.post("https://mj-nicasource-test.herokuapp.com/api/auth/signup", data);
     dispatch({ type: AUTH_USER, payload: res.data.token });
@@ -16,6 +18,7 @@ export const signup = (data, done) => async (dispatch) => {
 };
 
 export const signout = (done) => {
+  // signout action
   localStorage.removeItem("token")
   if (done) {
     done()
@@ -27,6 +30,8 @@ export const signout = (done) => {
 };
 
 export const signin = (formProps, done) => async (dispatch) => {
+   //signin. takes in 2 parameters, data (the data to sent to the api) and done(callback function). data is an object that has two keys, 
+  // email and password
   try {
     const res = await axios.post("https://mj-nicasource-test.herokuapp.com/api/auth/signin", formProps);
     localStorage.setItem("token", res.data.token);

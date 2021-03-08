@@ -3,6 +3,9 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { signin, signup } from "../../actions";
 import { Form, Button } from "react-bootstrap";
+
+//loginform, takes in 3 props: title, method, redirect. first and third props are self explanatory, the second one takes in a number, 
+//where 1 is for login and 0 is for signup
 const LoginBox = (props) => {
     const [authInput, setAuthInput] = useState({
         email: "",

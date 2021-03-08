@@ -3,6 +3,10 @@ import { Modal, Button } from "react-bootstrap";
 import InputArea from "../../Components/InputArea";
 import { connect } from "react-redux";
 import { updateStatistics, getStatistics } from "../../actions/data";
+
+/* 
+popup component for editing inidvidual record, takes in an item prop, which is the country's data that you would like to edit
+*/
 const PopUp = (props) => {
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState({

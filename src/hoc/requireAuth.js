@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+// check if user is logged in
 export default ChildComponent => {
   class ComposedComponent extends Component {
     componentDidMount(){

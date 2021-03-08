@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import {Button} from "react-bootstrap"
+
+/* search component, takes 2 props, suggestions (a list of items that you would like the user to search) and 
+        function to make the api call to the server in order to get the data of a specific country  */
 class SearchBar extends Component {
   static propTypes = {
     suggestions: PropTypes.instanceOf(Array)

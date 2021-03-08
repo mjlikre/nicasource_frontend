@@ -21,6 +21,8 @@ const Main = (props) => {
       }
     }
   }, [props.data, props.searchResults]);
+  // render card component. response data from api is an object of arrays orgized by continent, so a list of continets has been hard coded 
+  // in order to match to each object keys
   const renderCards = () => {
     const continents = [
       "Asia",
@@ -40,6 +42,9 @@ const Main = (props) => {
               <Card.Text>
                 {props.data
                   ? props.data.data[item].map((countries) => {
+                    //among the data from each continents, the overview for each continent is also contained in the array, array.map is used 
+                    //here in order to find the item that has the same entry for country and continent, and then return the overview data for the 
+                    //continent
                       if(countries.country === item){
                         return (
                           <>
@@ -55,7 +60,7 @@ const Main = (props) => {
                   : null}
                 
               </Card.Text>
-
+            {/* A button is set here in order to change the state to decide what data gets displayed to the TableContainer component */}
               <Button
                 onClick={() => {
                   setShowing({
@@ -109,6 +114,8 @@ const Main = (props) => {
         </Navbar.Collapse>
       </Navbar>
       <div className="kjga-display-block ">
+        {/* search component, takes 2 props, suggestions (a list of items that you would like the user to search) and 
+        function to make the api call to the server in order to get the data of a specific country  */}
         <SearchBar
           suggestions={props.data ? props.data.data["country_list"] : []}
           search={(e) => {

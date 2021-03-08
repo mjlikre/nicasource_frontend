@@ -2,7 +2,8 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import PopUp from "../PopUp"
 export default function TableContainer(props) {
-  
+  // table conponent for the main page, takes in a data prop which is an objet, with cont and data as its keys
+  // cont specifies the continent name and data has the list of countris in the continent
   return (
     <>
       <h3>{props.data.cont}</h3>
