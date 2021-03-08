@@ -12,6 +12,7 @@ export const getStatistics = (done) => async (dispatch) => {
       done()
     }
   } catch (error) {
+    //handles auth error, if authentication was not successful, remove the token from local storage which will log users out
     if (error.response.data) {
       localStorage.removeItem("token")
       dispatch({ type: AUTH_USER, payload: null,})

@@ -6,6 +6,8 @@ import { updateStatistics, getStatistics } from "../../actions/data";
 
 /* 
 popup component for editing inidvidual record, takes in an item prop, which is the country's data that you would like to edit
+works great when you have an array of data and needs edit each item. if you want to change the button name it can be converted into a props
+where you can pass in the button name that you want. 
 */
 const PopUp = (props) => {
   const [show, setShow] = useState(false);
@@ -29,6 +31,7 @@ const PopUp = (props) => {
     deaths: 0,
     recovered: 0
   });
+  //updates the record at the same time to ensure correct data is being passed into the server. 
   const updateValues = (cases, deaths, recovered) => {
     let UpdatedDeath = parseInt(props.item.deaths.total) + deaths
     let UpdatedCases = parseInt(props.item.cases.total) + cases - recovered 

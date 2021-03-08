@@ -4,8 +4,11 @@ import { connect } from "react-redux";
 import { signin, signup } from "../../actions";
 import { Form, Button } from "react-bootstrap";
 
-//loginform, takes in 3 props: title, method, redirect. first and third props are self explanatory, the second one takes in a number, 
-//where 1 is for login and 0 is for signup
+//loginform, takes in 3 props: title, method, redirect. title takes in a string, the method one takes in and integer 0 or 1, 
+//where 1 is for login and 0 is for signup, and redirect takes in a function to redirect the page. Due to the method use to 
+// redirect (props.history.push), it can't seem to work in a child component.
+
+// look into Login or Signup file in containers for sample usecase. 
 const LoginBox = (props) => {
     const [authInput, setAuthInput] = useState({
         email: "",
