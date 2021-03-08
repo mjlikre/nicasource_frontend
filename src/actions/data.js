@@ -1,4 +1,4 @@
-import { COVID_DATA, COVID_DATA_ERROR, SPECIFIC_COVID_DATA } from "./types";
+import { COVID_DATA, COVID_DATA_ERROR, SPECIFIC_COVID_DATA, AUTH_USER } from "./types";
 import axios from "axios";
 
 export const getStatistics = (done) => async (dispatch) => {

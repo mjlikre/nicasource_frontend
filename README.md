@@ -1,3 +1,10 @@
+Clone the repo first, then cd into the repo
+in your commad line/terminal run: npm install 
+after the packages have been installed, run npm start to start the applicaton
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
