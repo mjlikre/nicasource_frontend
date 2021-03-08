@@ -4,7 +4,7 @@ import axios from "axios";
 export const getStatistics = (done) => async (dispatch) => {
 // gets all the data
   try {
-    const res = await axios.get("http://localhost:3001/api/statistics",  {
+    const res = await axios.get("https://mj-nicasource-test.herokuapp.com/api/statistics",  {
         headers: { authorization: localStorage.getItem("token") },
       });
     dispatch({ type: COVID_DATA, payload: res.data });
@@ -42,7 +42,7 @@ export const updateStatistics = (data, done) => async(dispatch) =>{
 // the data parameter needs to be an object that has 2 keys, country and data. the data key of the data parameter also needs to have 2 keys, 
 //update and difference, where update is used to update the individual country's data and difference is used to update the sum data on each continent
   try{
-     await axios.post(`http://localhost:3001/api/statistics/${data.country}`, data.data,  {
+     await axios.post(`https://mj-nicasource-test.herokuapp.com/api/statistics/${data.country}`, data.data,  {
         headers: { authorization: localStorage.getItem("token") },
       });
   if (done) {
@@ -60,7 +60,7 @@ export const updateStatistics = (data, done) => async(dispatch) =>{
 export const sync = (done) => async(dispatch) => {
   // syncs with the rapidapi covid database
   try{
-    await axios.get(`http://localhost:3001/api/sync`, {
+    await axios.get(`https://mj-nicasource-test.herokuapp.com/api/sync`, {
         headers: { authorization: localStorage.getItem("token") },
       });
       if (done) {
